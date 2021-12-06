@@ -5,7 +5,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
@@ -20,6 +19,7 @@ public class BaseTest {
         if (BROWSER.equals("chrome")) {
             System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
             WebDriver driver = new ChromeDriver();
+            LOG.warn("Chrome is selected browser");
             driver.navigate().to(LINK);
             driver.manage().window().maximize();
             practiceLogInTest = new PracticeLogInTest(driver);
@@ -31,6 +31,7 @@ public class BaseTest {
         } else if (BROWSER.equals("firefox")) {
             System.setProperty("webdriver.gecko.driver", "src/main/resources/geckoDriver.exe");
             WebDriver driver = new FirefoxDriver();
+            LOG.warn("Firefox is selected browser");
             driver.navigate().to(LINK);
             driver.manage().window().maximize();
             practiceLogInTest = new PracticeLogInTest(driver);
