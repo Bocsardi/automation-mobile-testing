@@ -14,7 +14,6 @@ public class BaseTest {
     protected PracticeLogInTest practiceLogInTest;
     private final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
 
-
     @BeforeMethod
     public void selectedBrowser() {
 //        if (BROWSER.equals("Chrome")){
