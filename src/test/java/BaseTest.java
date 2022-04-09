@@ -1,34 +1,29 @@
+import Model.User;
 import Screens.PracticeLogInTest;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
+import utils.Driver;
+import utils.JsonUtils;
 
+@Listeners(utils.Listeners.class)
 public class BaseTest {
 
-    public static final String LINK= "https://www.saucedemo.com/";
-    public static final String BROWSER = System.getProperty("browser");
+    public static final String LINK = "https://www.saucedemo.com/";
     protected PracticeLogInTest practiceLogInTest;
+    protected User user;
+    protected String jsonUtils;
     private final Logger LOG = LoggerFactory.getLogger(BaseTest.class);
 
-
-    @BeforeMethod
+    @BeforeClass
     public void selectedBrowser() {
-//        if (BROWSER.equals("Chrome")){
-            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-            WebDriver driver = new ChromeDriver();
-            driver.navigate().to(LINK);
-            driver.manage().window().maximize();
-            practiceLogInTest = new PracticeLogInTest(driver);
-            try{wait(5000);}
-            catch (InterruptedException  | IllegalMonitorStateException e ){
-                e.printStackTrace();
-            }
-//        } else {
-//            LOG.warn("VM parameter is not set");
-//        }
+        Driver.Initialize();
+        Driver.Instance.navigate().to(LINK);
     }
 }
